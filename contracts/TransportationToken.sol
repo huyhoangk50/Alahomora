@@ -4,12 +4,12 @@ import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 import 'openzeppelin-solidity/contracts/token/ERC20/ERC20.sol';
 
 // ERC20 Token Smart contract
-contract FixedSuppyToken is ERC20, Ownable{
+contract TransportationToken is ERC20, Ownable{
     
-    string public constant name  = "STCToken";
+    string public constant name  = "TransportationToken";
     string public constant  symbol = "STC";
     uint8 public constant decimals = 18;
-    uint public _totalSupply = 100000;
+    uint256 public _totalSupply = 100000000000;
     uint256 public constant RATE = 500;
     
     using SafeMath for uint256;
@@ -26,6 +26,7 @@ contract FixedSuppyToken is ERC20, Ownable{
     // Constructor
     constructor() public {
         owner = msg.sender; 
+        balances[msg.sender] = _totalSupply;
     }
 
     // This function creates Tokens  
@@ -46,7 +47,7 @@ contract FixedSuppyToken is ERC20, Ownable{
 
      // Transfer the balance from owner's account to another account   
     function transfer(address _to, uint256 _value) public returns(bool){
-        require(balances[msg.sender] >= _value && _value > 0 );
+        require(balances[msg.sender] >= _value && _value > 0); 
         balances[msg.sender] = balances[msg.sender].sub(_value);
         balances[_to] = balances[_to].add(_value);
         emit Transfer(msg.sender, _to, _value);

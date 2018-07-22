@@ -16,7 +16,7 @@ contract Bot is Ownable {
         return(name, location);
     }
 
-    function makeInvoice(string _productName, uint256 _amount) public {
-        (ERC20(tokenAddress).transferFrom(msg.sender, this, _amount));
-    }
+    // function makeInvoice(uint256 _amount) public {
+    //     (ERC20(tokenAddress).transferFrom(msg.sender, this, _amount));
+    // }
 }

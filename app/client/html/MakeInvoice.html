@@ -1,0 +1,33 @@
+<template name="make_invoice">
+    <script type="text/javascript" src="../js/qrcode.js"></script>
+    <div class="container">
+        <div class="row">
+            <h2>New vehicle is comming!</h2>
+
+            <div class="form-group">
+            <div class="col-sm-12">
+                <h3>They are</h3>
+                <label class="radio-container">Car
+                    <input type="radio" checked="checked" name="radio" class="car-rd">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio-container">Truck
+                    <input type="radio" name="radio" class="truck-rd">
+                    <span class="checkmark"></span>
+                </label>
+                
+                <label class="radio-container">container
+                    <input type="radio" name="radio" class="container-rd">
+                    <span class="checkmark"></span>
+                </label>
+                <h3>The fee is {{vehicleFee}}</h3>
+                <div id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <div class="testqrcode" data-qrcode="{{data}}"></div>
+    </div>
+    <!-- {{>qrcode text = url size=256}} -->
+</template>

@@ -14,26 +14,30 @@ Template['user_payment'].onCreated(function(){
 
 
 Template.user_payment.helpers({
-    
+    fee: function (){
+        var fee = localStorage.getItem("vehicleFee");
+        return fee;
+    }
 });
 
 Template.user_payment.events({
     "submit .user-payment": function(event){
         event.preventDefault();
-        var gasPrice = 10000000000;
-        var gasLimit = 6605201;
-        var address = event.target.address.value;
-        var amount = event.target.amount.value;
+        var gasPrice = 1100000000;
+        var gasLimit = 4605201;
+        var address = "0xDca45834e3C319fb6069E136097f237F512A8Ca6";
+        var amount = localStorage.getItem("vehicleFee");;
         // var totalStaff = event.target.totalStaff.value;
-        console.log(gasPrice);
-        console.log(gasLimit);
+        
         // return false;
         // instance = TransportationTokenContract.at(transportationTokenAddress);
         
         console.log(TransportationTokenContract.methods);
         
-        var number = web3.eth.getTransactionCount(userAddress, function(err, result){
+        web3.eth.getTransactionCount(userAddress, function(err, result){
             count = result;
+            console.log("count");
+            console.log(count);
             tx = new Tx({
                 value: '0x0', 
                 from: userAddress,
@@ -42,7 +46,7 @@ Template.user_payment.events({
                 gas: "0x" + gasLimit.toString(16),
                 gasLimit: "0x" + gasLimit.toString(16),
                 to: address,
-                data: TransportationTokenContract.methods.transfer(address, 1000).encodeABI(),  
+                data: TransportationTokenContract.methods.transfer(address, amount).encodeABI(),  
                 chainId: "0x03"
             })
             console.log("0x" + gasPrice.toString(16));
@@ -53,11 +57,11 @@ Template.user_payment.events({
             web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
             .on('transactionHash', function(hash){
                 console.log("hash");
-                console.log(hash);
+                Bert.alert("<h1>Submited successfully!<h1>", "success", 'growth-top-right');
             })
             .on('receipt', function(receipt){
                 console.log("receipt");
-                Bert.alert("mined", "success", 'growth-top-right');
+                setTimeout(Bert.alert("mined", "success", 'growth-top-right'), 3000);
             })
             .on('confirmation', function(confirmationNumber, receipt){ 
                 console.log("confirmation");

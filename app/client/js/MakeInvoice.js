@@ -1,6 +1,6 @@
 import "./jqueryqrcode.min"
 
-var bootAddress= "0xDca45834e3C319fb6069E136097f237F512A8Ca6";
+var bootAddress= "0x5aCD0fEFDE0942570A3C7868F576EE0d9Bb020a1";
 
 Template['make_invoice'].onCreated(function(){
     Session.set("vehicleFee", 5000);
@@ -33,11 +33,11 @@ Template.make_invoice.events({
         // url = 5;
     },
     "click .container-rd": function(event){
-        Session.set("vehicleFee", 10000);
-        localStorage.setItem("vehicleFee", 10000);
+        Session.set("vehicleFee", 5000);
+        localStorage.setItem("vehicleFee", 5000);
     },
     "click .truck-rd": function(event){
-        Session.set("vehicleFee", 7000);
-        localStorage.setItem("vehicleFee", 7000);
+        Session.set("vehicleFee", 5000);
+        localStorage.setItem("vehicleFee", 5000);
     }
 })

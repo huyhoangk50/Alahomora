@@ -15,7 +15,7 @@ Template['user_payment'].onCreated(function(){
 
 Template.user_payment.helpers({
     fee: function (){
-        var fee = localStorage.getItem("vehicleFee");
+        var fee = 5000;
         return fee;
     }
 });
@@ -25,8 +25,8 @@ Template.user_payment.events({
         event.preventDefault();
         var gasPrice = 1100000000;
         var gasLimit = 4605201;
-        var address = "0xDca45834e3C319fb6069E136097f237F512A8Ca6";
-        var amount = localStorage.getItem("vehicleFee");;
+        var address = "0x5aCD0fEFDE0942570A3C7868F576EE0d9Bb020a1";
+        var amount = 5000;
         // var totalStaff = event.target.totalStaff.value;
         
         // return false;
